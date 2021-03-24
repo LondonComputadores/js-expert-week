@@ -1,20 +1,22 @@
-# Design Pattern with Fluent Interface and Builder
 
-How it's being built. Console commnads and extra configs:
+# What am I building?
+- A Console Chat App with Blessed package and also Design Pattern with Fluent Interface and Builder
 
-- node -v = Output: v12...
+# How it's being built.
+
+Console commnads and extra configs:
+
+- node -v  # Output: v12...
 - Here I decided to install node v15 using nvm. See instructions below!
 - nvm use 15
-- node -v = Output: v15...
+- node -v  # Output: v15...
+- npm install npm -y
 - npm init -y
-- npm i jest@26 -D
-- answers: yes; no; node; yes; v8; yes;.
-- "see min 13+ for more jest configs"
-- 
+
 
 # nvm instalation instructions:
 
-- see the link in the reference below!
+- see the link in the References section below!
 - open another terminal tab or window
 - cd ~/ from anywhere then git clone https://github.com/nvm-sh/nvm.git .nvm
 - cd ~/.nvm and check out the latest version with git checkout v0.37.2

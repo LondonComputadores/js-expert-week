@@ -1,13 +1,19 @@
 {
   "name": "client",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "type": "module",
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "blessed": "^0.1.81",
+    "npm": "^7.7.2"
+  },
+  "devDependencies": {},
+  "description": ""
 }
