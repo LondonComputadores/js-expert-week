@@ -34,7 +34,20 @@ export default class TerminalController {
             const { userName, message } = msg
             const collor = this.#getUserCollor(userName)
 
-            chat.addItem(`{${collor}}{bold}${userName}{/}: $(message)`)
+            chat.addItem(`{${collor}}{bold}${userName}{/}: ${message}`)
+
+            screen.render()
+        }
+    }
+
+    #onLogChanged({ screen, activityLog }) {
+        
+        return msg => {
+            //alexandrepaes joined
+            //alexandrepaes left
+            const [userName] = msg.split(/\s/)
+            const collor = this.#getUserCollor(userName)
+            activityLog.addItem(`{${collor}}{bold}${msg.toString()}{/}`)
 
             screen.render()
         }
@@ -42,6 +55,7 @@ export default class TerminalController {
 
     #registerEvents(eventEmitter, components) {
         eventEmitter.on('message:received', this.#onMessageReceived(components))
+        eventEmitter.on('activityLog:updated', this.#onLogChanged(components))
     }
 
     async initializeTable(eventEmitter) {
@@ -50,7 +64,9 @@ export default class TerminalController {
             .setScreen({ title: 'Chat-App - Alexandre Paes'})
             .setLayoutComponent()
             .setInputComponent(this.#onInputReceived(eventEmitter))
-            .setChatComponet()
+            .setChatComponent()
+            .setActivityLogComponent()
+            .setStatusComponent()
             .build()
 
         this.#registerEvents(eventEmitter, components)
@@ -59,9 +75,9 @@ export default class TerminalController {
         components.screen.render()
 
         setInterval(() => {
-            eventEmitter.emit('message:received', {message: 'hey', useName: 'alexandrepaes'})
-            eventEmitter.emit('message:received', {message: 'hi', useName: 'marialangarita'})
-            eventEmitter.emit('message:received', {message: 'hello', useName: 'fulana'})
-        }, 2000);
+            eventEmitter.emit('activityLog:updated',  'alexandrepaes joined')
+            eventEmitter.emit('activityLog:updated',  'marialangarita left')
+            eventEmitter.emit('activityLog:updated',  'fulana joined')
+        }, 1000);
     }
 }
